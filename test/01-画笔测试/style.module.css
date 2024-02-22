@@ -1,0 +1,27 @@
+.brushdom {
+  position: absolute;
+  width: 100%;
+  bottom: 0;
+  left: 0;
+  transform: translateY(100%);
+}
+
+.brushcursor {
+  pointer-events: none;
+  display: none;
+  position: absolute;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  cursor: none;
+}
+
+.center {
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%, -100%);
+  top: 0;
+}
+
+.cursor {
+  border-radius: 50%;
+}
