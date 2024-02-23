@@ -2,6 +2,8 @@
 
 这是一个模块化开发 `p5.js` 应用的库，内置多种图形实现以及测试图形学算法实现案例
 
+/>>> <a href="https://yanglebupt.github.io/p5-project/">案例演示</a>
+
 ## 主要 API
 
 ### createP5instance
