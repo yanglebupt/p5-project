@@ -1,8 +1,6 @@
-import { Sketch } from "../../src/Sketch";
+import { Sketch, Circle, P5Adapter } from "@ylbupt/p5-project";
 import p5, { Color, Element, Vector } from "p5";
 import styles from "./style.module.css";
-import { Circle } from "../../src/virtual-object/Circle";
-import P5Adapter from "../../src/adapters/P5Adapter";
 
 enum CanvasMode {
   Brush = "Brush mode",

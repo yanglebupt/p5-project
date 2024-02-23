@@ -1,3 +1,10 @@
+import { resolve } from "path";
 import { defineConfig } from "vite";
 
-export default defineConfig({});
+export default defineConfig({
+  resolve: {
+    alias: {
+      "@ylbupt/p5-project": resolve(__dirname, "src/index"), // 路径别名
+    },
+  },
+});

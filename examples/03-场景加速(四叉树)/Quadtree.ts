@@ -1,8 +1,11 @@
 import p5, { Vector } from "p5";
-import { AreaRange, IShape } from "../../src/interfaces";
-import { Rect } from "../../src/virtual-object/Rect";
-import P5Adapter from "../../src/adapters/P5Adapter";
-import { StrokeAndFillAttribute } from "../../src/adapters/attribute-interface";
+import {
+  AreaRange,
+  IShape,
+  Rect,
+  StrokeAndFillAttribute,
+  P5Adapter,
+} from "@ylbupt/p5-project";
 
 /* 
   可以定制化 bound，不一定非是 rect 也可以是 circle

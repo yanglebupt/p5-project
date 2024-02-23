@@ -1,4 +1,4 @@
-import { Sketch } from "../../src/Sketch";
+import { Sketch } from "@ylbupt/p5-project";
 import { Element, Vector } from "p5";
 import { FKConeBone, ForwardKinematics } from "./ForwardKinematics";
 import { IKConeBone, InverseKinematics } from "./InverseKinematics";

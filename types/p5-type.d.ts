@@ -1,6 +1,6 @@
 import "p5";
 
-declare module "p5" {
+export declare module "p5" {
   // 使用interface扩展class的实例属性
   interface Vector {
     abs(): void;

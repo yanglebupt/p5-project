@@ -1,10 +1,13 @@
 import p5, { Element, Vector } from "p5";
-import { Sketch } from "../../src/Sketch";
+import {
+  Sketch,
+  Circle,
+  Scene,
+  AreaRange,
+  IShape,
+  Rect,
+} from "@ylbupt/p5-project";
 import { Quadtree } from "./Quadtree";
-import { Circle } from "../../src/virtual-object/Circle";
-import { Scene } from "../../src/Scene";
-import { AreaRange, IShape } from "../../src/interfaces";
-import { Rect } from "../../src/virtual-object/Rect";
 
 enum PointMode {
   Mouse = "mouse",

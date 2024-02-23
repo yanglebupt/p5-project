@@ -16,21 +16,14 @@
     "noEmitOnError": true,
     "noImplicitAny": false,
 
-    // 用于设置模块名到基于baseUrl的路径映射
-    "baseUrl": ".",
-    "paths": {
-      "@ylbupt/p5-project": ["src/index"],
-      "@ylbupt/p5-project/*": ["src/*"]
-    }
+    "outDir": "./dist",
+
+    /* 类型声明文件 */
+    "declaration": true,
+    "declarationDir": "./@types"
   },
   "ts-node": {
     "esm": true
   },
-  "include": [
-    "main.ts",
-    "src/**/*.ts",
-    "examples/**/*.ts",
-    "vite-env.d.ts",
-    "types/**/*.d.ts"
-  ]
+  "include": ["src/**/*.ts", "vite-env.d.ts", "types/**/*.d.ts"]
 }

@@ -6,7 +6,7 @@ export interface DrawAdapter {
 
 export class InstanceDrawAdapter {
   public static drawAdapter: DrawAdapter | null = null;
-  public static UseAdapter<T extends DrawAdapter>(drawAdapter: T) {
-    this.drawAdapter = drawAdapter;
+  public static UseAdapter(drawAdapter: DrawAdapter) {
+    InstanceDrawAdapter.drawAdapter = drawAdapter;
   }
 }

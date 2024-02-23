@@ -1,8 +1,11 @@
 import p5, { Vector } from "p5";
-import { applyMixins } from "../../src/type/merge-class";
 import Link from "./Link";
-import { ConeRay, ConeRayAttribute } from "../../src/virtual-object/ConeRay";
-import P5Adapter from "../../src/adapters/P5Adapter";
+import {
+  ConeRay,
+  ConeRayAttribute,
+  P5Adapter,
+  applyMixins,
+} from "@ylbupt/p5-project";
 
 export class LocalRay {
   constructor(public angle: number, public localAngle: number) {}

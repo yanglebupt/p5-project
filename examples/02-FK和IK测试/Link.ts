@@ -1,5 +1,4 @@
-import { Ray } from "../../src/virtual-object/Ray";
-import { Shape } from "../../src/interfaces";
+import { Ray, Shape } from "@ylbupt/p5-project";
 import p5 from "p5";
 
 /*
