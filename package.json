@@ -32,6 +32,7 @@
   ],
   "scripts": {
     "dev": "vite",
+    "build-html": "vite build",
     "build-tsc": "tsc -p tsconfig-build.json",
     "build-rollup": "npx rollup --config",
     "publish-patch": "npm version patch & npm publish"

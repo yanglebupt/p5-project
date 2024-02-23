@@ -7,4 +7,7 @@ export default defineConfig({
       "@ylbupt/p5-project": resolve(__dirname, "src/index"), // 路径别名
     },
   },
+  build: {
+    outDir: "./html",
+  },
 });
