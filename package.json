@@ -6,6 +6,7 @@
   "homepage": "https://github.com/yanglebupt",
   "license": "ISC",
   "type": "module",
+  "types": "./@types/index.d.ts",
   "main": "./build/p5-project.umd.js",
   "module": "./build/p5-project.esm.js",
   "exports": {
@@ -26,7 +27,8 @@
     "LICENSE",
     "package.json",
     "README.md",
-    "dist"
+    "dist",
+    "@types"
   ],
   "scripts": {
     "dev": "vite",
