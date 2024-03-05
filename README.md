@@ -4,6 +4,12 @@
 
 />>> <a href="https://yanglebupt.github.io/p5-project/">案例演示</a>
 
+## 安装
+
+```bash
+npm i @ylbupt/p5-project
+```
+
 ## 主要 API
 
 ### createP5instance
@@ -203,6 +209,9 @@ public static draw(
   p5: p5
 ): boolean
 ```
+
+## 其余文档
+- <a href="./docs/IShape.md">IShape</a>
 
 ## 与前端组件框架结合开发
 
