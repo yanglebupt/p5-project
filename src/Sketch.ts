@@ -1,11 +1,14 @@
-import p5 from "p5";
+import p5, { p5InstanceExtensions } from "p5";
 import { Scene } from "./Scene";
 import { InstanceDrawAdapter } from "./adapters/DrawAdapter";
 import P5Adapter from "./adapters/P5Adapter";
 
 export type LifeFunc = (p5: p5) => void;
 
-export abstract class Sketch {
+//@ts-ignore
+export interface Sketch extends p5InstanceExtensions {}
+//@ts-ignore
+export abstract class Sketch implements p5InstanceExtensions {
   private readonly LifeFuncList: string[] = [
     "preload",
     "setup",
@@ -37,6 +40,23 @@ export abstract class Sketch {
     // 管理场景
     this.scene = new Scene(p5);
     InstanceDrawAdapter.UseAdapter(new P5Adapter(p5));
+    /* 为 Sketch 实例设置代理 */
+    Object.keys(Object.getPrototypeOf(p5)).forEach((k) => {
+      console.log(Object.getOwnPropertyDescriptor(p5, k));
+      if (p5[k] && p5[k].bind) {
+        Object.defineProperty(this, k, {
+          get: () => {
+            return p5[k].bind(p5);
+          },
+          configurable: false,
+        });
+      } else {
+        Object.defineProperty(this, k, {
+          get: () => p5[k],
+          configurable: false,
+        });
+      }
+    });
   }
   public preload() {}
   public keyPressed() {}

@@ -30,6 +30,7 @@
     "main.ts",
     "src/**/*.ts",
     "examples/**/*.ts",
+    "start-demo/**/*.ts",
     "vite-env.d.ts",
     "types/**/*.d.ts"
   ]
