@@ -1,6 +1,6 @@
 {
   "name": "@ylbupt/p5-project",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "这是一个模块化开发 `p5.js` 应用的库，内置多种图形实现以及测试图形学算法实现案例",
   "author": "yangle <yanglebupt@qq.com>",
   "homepage": "https://github.com/yanglebupt",
