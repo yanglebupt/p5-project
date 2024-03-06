@@ -40,6 +40,7 @@
     "publish-patch": "npm version patch & npm publish"
   },
   "devDependencies": {
+    "@release-it/conventional-changelog": "^8.0.1",
     "@rollup/plugin-node-resolve": "^15.2.3",
     "@types/node": "^20.11.20",
     "@types/p5": "^1.7.6",
