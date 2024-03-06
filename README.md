@@ -10,9 +10,9 @@
 npm i @ylbupt/p5-project
 ```
 
-## 快速使用
+## 快速开始
 
-/>>> <a href="./start-demo/index.ts">快速使用 Demo </a>
+/>>> <a href="./start-demo/index.ts"> 快速开始 Demo </a>
 
 ```typescript
 import { Circle, Sketch } from "@ylbupt/p5-project";
@@ -33,6 +33,10 @@ export class MainSketch extends Sketch {
   }
 }
 ```
+
+## 更多文档
+
+<a href="./docs/IShape.md">IShape</a>
 
 ## 主要 API
 
@@ -233,9 +237,6 @@ public static draw(
   p5: p5
 ): boolean
 ```
-
-## 其余文档
-- <a href="./docs/IShape.md">IShape</a>
 
 ## 与前端组件框架结合开发
 
