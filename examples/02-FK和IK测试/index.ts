@@ -11,12 +11,12 @@ export class Sketch02 extends Sketch {
     this.scene.add(this.fk); // 1. 添加到场景
     for (let i = 0; i < 5; i++) {
       this.fk.addLink(
-        new FKConeBone(new Vector(100, 100), i * this.p5.QUARTER_PI, 50)
+        new FKConeBone(new Vector(100, 100), i * this.QUARTER_PI, 50)
       );
     }
-    this.p5.createCanvas(300, 300);
-    this.p5.background(125);
-    this.p5.createDiv("ForwardKinematics").position(0, 0);
+    this.createCanvas(300, 300);
+    this.background(125);
+    this.createDiv("ForwardKinematics").position(0, 0);
   }
   public draw(): void {
     if (
@@ -26,8 +26,8 @@ export class Sketch02 extends Sketch {
       this.dir *= -1;
     }
     this.fk.rotate(this.dir * Math.PI * 0.005, 2); // 2. 改变
-    this.p5.clear();
-    this.p5.background(125);
+    this.clear();
+    this.background(125);
     this.scene.draw(false); // 3. 渲染整个场景
   }
 }
@@ -42,22 +42,21 @@ export class Sketch03 extends Sketch {
   private mouseOut: boolean = true;
   public setup(): void {
     super.setup();
-    this.p5
-      .createCanvas(300, 300)
+    this.createCanvas(300, 300)
       .mouseOut(() => {
         this.startLook = false;
         this.mouseOut = true;
       })
       .mouseOver(() => (this.mouseOut = false));
     this.scene.add(this.ik);
-    this.p5.background(125);
-    this.p5.createDiv("InverseKinematics").position(0, 0);
-    this.fixed = this.p5.createCheckbox("Is Fixed").position(0, this.p5.height);
+    this.background(125);
+    this.createDiv("InverseKinematics").position(0, 0);
+    this.fixed = this.createCheckbox("Is Fixed").position(0, this.height);
     for (let i = 0; i < 5; i++) {
       this.ik.addLink(
         new IKConeBone(
-          new Vector(this.p5.width / 2, this.p5.height),
-          -this.p5.HALF_PI,
+          new Vector(this.width / 2, this.height),
+          -this.HALF_PI,
           50
         )
       );
@@ -66,15 +65,15 @@ export class Sketch03 extends Sketch {
   public draw(): void {
     // @ts-ignore
     this.ik.fixed = this.fixed!.checked();
-    if (this.startLook) this.ik.lookAt(this.p5.mouseX, this.p5.mouseY);
-    this.p5.clear();
-    this.p5.background(125);
+    if (this.startLook) this.ik.lookAt(this.mouseX, this.mouseY);
+    this.clear();
+    this.background(125);
     this.scene.draw(false);
   }
 
   public mouseClicked(): void {
     if (this.mouseOut) return;
-    const { mouseButton, LEFT } = this.p5;
+    const { mouseButton, LEFT } = this;
     if (mouseButton === LEFT) {
       this.startLook = true;
     }
@@ -82,7 +81,7 @@ export class Sketch03 extends Sketch {
 
   public keyPressed(): void {
     if (this.mouseOut) return;
-    const { keyCode, ESCAPE } = this.p5;
+    const { keyCode, ESCAPE } = this;
     if (keyCode === ESCAPE) {
       this.startLook = false;
     }

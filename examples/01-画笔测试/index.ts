@@ -88,12 +88,11 @@ export default class Sketch01 extends Sketch {
 
   public setup(): void {
     super.setup();
-    this.p5.frameRate(120);
-    this.p5.background(125);
-    this.p5.createDiv("Press B to brush").position(0, 0);
+    this.frameRate(120);
+    this.background(125);
+    this.createDiv("Press B to brush").position(0, 0);
 
-    this.p5
-      .createCanvas(300, 300)
+    this.createCanvas(300, 300)
       .mouseOut(() => {
         this.mouseOut = true;
         this.paint = false;
@@ -106,15 +105,15 @@ export default class Sketch01 extends Sketch {
   public draw(): void {
     this.brushDom.draw();
     if (this.brushDom.state.clear) {
-      this.p5.clear();
-      this.p5.background(125);
-      this.p5.cursor(this.p5.ARROW);
+      this.clear();
+      this.background(125);
+      this.cursor(this.ARROW);
       this.scene.clear();
       this.brushDom.state.clear = false;
       return;
     } else if (this.brushDom.state.save) {
       this.brushDom.state.save = false;
-      this.p5.saveCanvas("test", "jpg");
+      this.saveCanvas("test", "jpg");
     }
     if (this.mode === CanvasMode.Normal) {
       this.normalMode();
@@ -125,32 +124,32 @@ export default class Sketch01 extends Sketch {
 
   public normalMode() {
     this.paint = false;
-    this.p5.cursor(this.p5.ARROW);
+    this.cursor(this.ARROW);
     this.brushDom.brushCursor.hide();
     if (this.isnew) {
       // 初始背景，后面保留绘制
-      this.p5.clear();
-      this.p5.background(125);
+      this.clear();
+      this.background(125);
       this.isnew = false;
     }
   }
 
   public brushMode() {
-    this.p5.noCursor();
+    this.noCursor();
     if (this.paint) {
       this.brushDom.brushCursor.hide();
       ////////////////方式一////////////////////////
-      // this.p5.noStroke();
-      // this.p5.noFill();
-      // this.p5.fill(this.brush.color);
-      // this.p5.circle(this.p5.mouseX, this.p5.mouseY, this.brush.size); // 之间的间隙需要填充，不清楚，之前绘制的保留，这个性能好，但无法记录之前绘制的
+      // this.noStroke();
+      // this.noFill();
+      // this.fill(this.brush.color);
+      // this.circle(this.mouseX, this.mouseY, this.brush.size); // 之间的间隙需要填充，不清楚，之前绘制的保留，这个性能好，但无法记录之前绘制的
 
       ////////////////方式二////////////////////////
-      // this.p5.clear();
-      // this.p5.background(125);
+      // this.clear();
+      // this.background(125);
       // this.scene.add(
       //   new Circle(
-      //     new Vector(this.p5.mouseX, this.p5.mouseY),
+      //     new Vector(this.mouseX, this.mouseY),
       //     this.brush.size,
       //     {
       //       color: this.brush.color,
@@ -161,13 +160,9 @@ export default class Sketch01 extends Sketch {
 
       ////////////////方式三（和方式一是相同的）////////////////////////
       P5Adapter.drawCircle(
-        new Circle(
-          new Vector(this.p5.mouseX, this.p5.mouseY),
-          this.brush.size,
-          {
-            color: this.brush.color,
-          }
-        ),
+        new Circle(new Vector(this.mouseX, this.mouseY), this.brush.size, {
+          color: this.brush.color,
+        }),
         this.p5
       );
     } else {
@@ -182,14 +177,14 @@ export default class Sketch01 extends Sketch {
 
   public mousePressed(): void {
     if (this.mouseOut) return;
-    const { mouseButton, LEFT } = this.p5;
+    const { mouseButton, LEFT } = this;
     if (mouseButton === LEFT && this.mode === CanvasMode.Brush) {
       this.paint = true;
     }
   }
 
   public mouseReleased(): void {
-    const { mouseButton, LEFT } = this.p5;
+    const { mouseButton, LEFT } = this;
     if (mouseButton === LEFT && this.mode === CanvasMode.Brush) {
       this.paint = false;
     }
@@ -203,7 +198,7 @@ export default class Sketch01 extends Sketch {
   }
 
   public keyPressed(): void {
-    const { key, keyCode, ESCAPE } = this.p5;
+    const { key, keyCode, ESCAPE } = this;
     if (key === "b") {
       this.mode = CanvasMode.Brush;
       this.title.html(this.mode);

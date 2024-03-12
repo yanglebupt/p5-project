@@ -1,7 +1,4 @@
 // rollup --config
-/**
- * 打包后的 types 需要另外发布
- */
 import resolve from "@rollup/plugin-node-resolve";
 
 export default {

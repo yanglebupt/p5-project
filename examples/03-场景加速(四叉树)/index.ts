@@ -53,44 +53,43 @@ export class Sketch04 extends Sketch {
 
   public setup(): void {
     super.setup();
-    this.p5
-      .createCanvas(300, 300)
+    this.createCanvas(300, 300)
       .mouseOut(() => (this.mouseOut = true))
       .mouseOver(() => (this.mouseOut = false));
-    this.p5.background(125);
-    this.radio = this.p5.createRadio() as any;
+    this.background(125);
+    this.radio = this.createRadio() as any;
     this.radio.option(PointMode.Mouse, "mouse");
     this.radio.option(PointMode.Move, "move");
     this.radio.selected(PointMode.Mouse);
-    this.p5.createDiv("Quadtree(Press A to Query, click start)").position(0, 0);
-    this.frameTitle = this.p5.createDiv("FrameRate: ");
-    this.frameTitle.position(0, this.p5.height - 30);
-    this.pointCount = this.p5.createSlider(100, 2000, 300, 100);
-    this.pointCountText = this.p5.createSpan("300");
-    this.p5.createButton("new start").mousePressed(() => {
+    this.createDiv("Quadtree(Press A to Query, click start)").position(0, 0);
+    this.frameTitle = this.createDiv("FrameRate: ");
+    this.frameTitle.position(0, this.height - 30);
+    this.pointCount = this.createSlider(100, 2000, 300, 100);
+    this.pointCountText = this.createSpan("300");
+    this.createButton("new start").mousePressed(() => {
       this.startMove = false;
       this.startAddPoint = false;
       this.clearQuery();
-      this.p5.clear();
-      this.p5.background(125);
+      this.clear();
+      this.background(125);
       this.quadtree.clear();
       if (this.radio.value() === PointMode.Move) {
         this.startMove = true;
       }
     });
 
-    this.quadtree.position = new Vector(this.p5.width / 2, this.p5.height / 2);
-    this.quadtree.width = this.p5.width;
-    this.quadtree.height = this.p5.height;
+    this.quadtree.position = new Vector(this.width / 2, this.height / 2);
+    this.quadtree.width = this.width;
+    this.quadtree.height = this.height;
 
     this.scene.add(this.range);
     this.scene.add(this.quadtree);
   }
 
   public draw(): void {
-    this.p5.clear();
-    this.p5.background(125);
-    this.frameTitle?.html("FrameRate: " + this.p5.frameRate());
+    this.clear();
+    this.background(125);
+    this.frameTitle?.html("FrameRate: " + this.frameRate());
     this.pointCountText?.html(this.pointCount!.value() + "");
     if (this.startMove) {
       const existCount = this.scene2.shapeList.length;
@@ -99,7 +98,7 @@ export class Sketch04 extends Sketch {
         /////////////////////////////////////////////
         for (let i = 0; i < count - existCount; i++) {
           const point = new Circle(
-            new Vector(this.p5.random(5, 295), this.p5.random(5, 295)),
+            new Vector(this.random(5, 295), this.random(5, 295)),
             3,
             { color: "black" }
           );
@@ -139,9 +138,9 @@ export class Sketch04 extends Sketch {
 
   public createDynamicQuadTree(scene: Scene): Quadtree<Circle> {
     const quadtree = new Quadtree<Circle>(
-      new Vector(this.p5.width / 2, this.p5.height / 2),
-      this.p5.width,
-      this.p5.height
+      new Vector(this.width / 2, this.height / 2),
+      this.width,
+      this.height
     );
     scene.traverse<Circle>((point, i) => {
       this.movePoint(point, this.dirs[i]);
@@ -153,13 +152,13 @@ export class Sketch04 extends Sketch {
   public movePoint(point: Circle, dir: Vector) {
     point.center = Vector.add(
       point.center,
-      dir.copy().mult(this.p5.deltaTime * this.speed)
+      dir.copy().mult(this.deltaTime * this.speed)
     );
     if (
       point.center.x <= 0 ||
-      point.center.x >= this.p5.width ||
+      point.center.x >= this.width ||
       point.center.y <= 0 ||
-      point.center.y >= this.p5.height
+      point.center.y >= this.height
     ) {
       dir.mult(-1, -1);
     }
@@ -181,12 +180,12 @@ export class Sketch04 extends Sketch {
     if (this.mouseOut) return;
     if (this.startAddPoint && this.radio.value() === PointMode.Mouse)
       this.quadtree.add(
-        new Circle(new Vector(this.p5.mouseX, this.p5.mouseY), 3, {
+        new Circle(new Vector(this.mouseX, this.mouseY), 3, {
           color: "black",
         })
       );
     if (this.startQueryPoint && this.radio.value() === PointMode.Mouse) {
-      this.range.position = new Vector(this.p5.mouseX, this.p5.mouseY);
+      this.range.position = new Vector(this.mouseX, this.mouseY);
       this.range.hidden = false;
       this.funds.forEach((f) => (f.attribute.color = "black"));
       this.funds = this.quadtree.query(this.range);
@@ -195,7 +194,7 @@ export class Sketch04 extends Sketch {
   }
 
   public keyPressed(): void {
-    const { keyCode, ESCAPE, key } = this.p5;
+    const { keyCode, ESCAPE, key } = this;
     if (keyCode === ESCAPE) {
       this.startAddPoint = false;
       this.startQueryPoint = false;
