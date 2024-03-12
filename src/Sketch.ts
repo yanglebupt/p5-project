@@ -42,7 +42,6 @@ export abstract class Sketch implements p5InstanceExtensions {
     InstanceDrawAdapter.UseAdapter(new P5Adapter(p5));
     /* 为 Sketch 实例设置代理 */
     Object.keys(Object.getPrototypeOf(p5)).forEach((k) => {
-      console.log(Object.getOwnPropertyDescriptor(p5, k));
       if (p5[k] && p5[k].bind) {
         Object.defineProperty(this, k, {
           get: () => {

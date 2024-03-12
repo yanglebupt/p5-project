@@ -12,10 +12,8 @@ npm i @ylbupt/p5-project
 
 ## 快速开始
 
-/>>> <a href="./start-demo/index.ts"> 快速开始 Demo </a>
-
 ```typescript
-import { Circle, Sketch } from "@ylbupt/p5-project";
+import { Circle, Sketch, createP5instance } from "@ylbupt/p5-project";
 import { Vector } from "p5";
 
 export class MainSketch extends Sketch {
@@ -32,6 +30,8 @@ export class MainSketch extends Sketch {
     this.scene.draw();
   }
 }
+
+createP5instance((instance: p5) => new MainSketch(instance), "app");
 ```
 
 ## 更多文档
@@ -42,7 +42,7 @@ export class MainSketch extends Sketch {
 
 ### createP5instance
 
-该方法用于创建一个自定义 `p5` 实例和`canvas` 元素，然后插入到指定 `id` 的 `div` 元素下，若父`div` 元素不存在则会创建
+该方法用于创建一个自定义 `p5` 实例和 `canvas` 元素，然后插入到指定 `id` 的 `div` 元素下，若父 `div` 元素不存在则会创建
 
 ```typescript
 function createP5instance(
@@ -53,7 +53,7 @@ function createP5instance(
 
 #### sketchFunc
 
-注册函数接受一个 p5 instance 的参数，然后返回一个 <a href="#sketch">`Sketch`</a> 实例，我们将在 <a href="#sketch">`Sketch`</a> 类中完成 p5 instance 的生命周期函数的注册以及场景初始化
+注册函数接受一个 p5 instance 的参数，然后返回一个 <a href="#sketch">`Sketch`</a> 实例，我们将在 <a href="#sketch">`Sketch`</a> 类中完成 p5 instance 的生命周期函数的注册，原型链的迁移以及场景初始化
 
 #### id
 
@@ -103,7 +103,7 @@ constructor(protected p5: p5){}
 
 #### p5
 
-`Sketch` 类内部提供一个 p5 instance 用来绘制场景的对象
+`Sketch` 类内部提供一个 p5 instance 用来绘制场景的对象，但该 `Sketch` 类上面已经代理了 `p5 instance` 的属性和方法，可以直接通过 `this` 绘制，而不需要 `this.p5` 来绘制
 
 ```typescript
 protected p5: p5
@@ -123,13 +123,13 @@ protected scene: Scene;
 export class MainSketch extends Sketch {
   setup() {
     super.setup();
-    this.p5.createCanvas(300, 300);
-    this.p5.background(125);
+    this.createCanvas(300, 300);
+    this.background(125);
     this.scene.add();
   }
   draw() {
-    this.p5.clear();
-    this.p5.background(125);
+    this.clear();
+    this.background(125);
     this.scene.draw();
   }
 }
